@@ -1,17 +1,19 @@
 
+//dependencias
 import React , { Component } from 'react';
+
+//components
+import Header from './header';
+
+//data
+import items from './data/menu';
+
 
 class App extends Component {
     render() {
         return (
-            <div>
-                <nav className="light-blue darken-4">
-                    <div className ="container">
-                        <a className="brand-logo" href="/"> Mern Stack!!</a>
-
-                    </div>
-
-                </nav>
+            <div className="App">
+               <Header items={items}/>
 
             </div>
 
