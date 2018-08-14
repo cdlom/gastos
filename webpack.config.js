@@ -3,7 +3,7 @@ module.exports = {
     output: {
         path: __dirname + '/src/public',
         filename: 'bundle.js'
-    },
+         },
     module: {
         rules: [
             {
@@ -12,5 +12,5 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
-    }
+    },
 };

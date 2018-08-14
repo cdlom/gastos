@@ -4,6 +4,9 @@ class Content extends Component{
 
     render() {
         const { body } = this.props;
+        console.log('body');
+        console.log(body);
+
         return(
             <div className="Content">
             {body}
@@ -11,3 +14,5 @@ class Content extends Component{
         );
     }
 }
+
+export default Content;

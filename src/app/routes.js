@@ -7,14 +7,18 @@ import Conceptos from './Conceptos';
 import Estimados from './Estimados';
 import Movimientos from './Movimientos';
 import Resumen from './Resumen';
+import Home from './Home';
 
+
+console.log(Conceptos);
 const AppRoutes = () => 
 <App>
     <Switch>
-        <Route path="/Conceptos" componet = {Conceptos} />
-        <Route path="/Estimados" componet = {Estimados} />
-        <Route path="/Movimientos" componet = {Movimientos} />
-        <Route path="/Resumen" componet = {Resumen} />
+        <Route exact path="/" component = {Home} />
+        <Route exact path="/Conceptos" component = {Conceptos} />
+        <Route path="/Estimados" component = {Estimados} />
+        <Route path="/Movimientos" component = {Movimientos} />
+        <Route path="/Resumen" component = {Resumen} />
     </Switch>    
 </App>;
 

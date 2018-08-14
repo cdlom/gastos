@@ -14,7 +14,7 @@ class App extends Component {
     render() {
 
         const { children } = this.props;
-
+        console.log (children);
         return (
             <div className="App">
                <Header title="Gastos Personales" items={items}/>
