@@ -18,7 +18,9 @@ class App extends Component {
         return (
             <div className="App">
                <Header title="Gastos Personales" items={items}/>
+               <div className="grey lighten-2">
                <Content body={children} />
+               </div>
             </div>
         )
 

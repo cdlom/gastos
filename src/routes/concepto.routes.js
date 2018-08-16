@@ -23,6 +23,9 @@ router.get('/:id', async (req , res ) => {
 
 
 router.post('/' , async (req, res) => {
+
+    console.log('post');
+    console.log(req.body);
     const { conceptodesc, conceptotipo } = req.body;
     const newConcepto = new ConceptoModel( {conceptodesc , conceptotipo});
     await newConcepto.save();   
