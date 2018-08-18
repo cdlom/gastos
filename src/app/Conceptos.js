@@ -14,13 +14,14 @@ class Conceptos extends Component {
             id: '',
             conceptodesc: '',
             conceptotipo: 'Egreso',
+            conceptoimporte: 0,
             conceptosarray: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleOptionChange = this.handleOptionChange.bind(this);
         this.handleButtonEdit = this.handleButtonEdit.bind(this);
         this.addConcepto = this.addConcepto.bind(this);
-        this.HandleClean= this.HandleClean.bind(this);
+        this.HandleClean = this.HandleClean.bind(this);
     };
 
 
@@ -40,6 +41,7 @@ class Conceptos extends Component {
                 this.setState({
                     conceptodesc: data.conceptodesc,
                     conceptotipo: data.conceptotipo,
+                    conceptoimporte: data.conceptoimporte,
                     id: data._id
                 });
             });
@@ -48,13 +50,14 @@ class Conceptos extends Component {
     HandleClean(e) {
 
         this.setState({
-            id:'',
-            conceptodesc:'',
-            conceptotipo:'Egreso'
+            id: '',
+            conceptodesc: '',
+            conceptotipo: 'Egreso',
+            conceptoimporte: 0
 
         });
-        
-        window.M.toast({html: 'Datos Limpiados'});
+
+        window.M.toast({ html: 'Datos Limpiados' });
 
     };
     handleChange(e) {
@@ -119,7 +122,8 @@ class Conceptos extends Component {
                 method: 'PUT',
                 body: JSON.stringify({
                     conceptodesc: this.state.conceptodesc,
-                    conceptotipo: this.state.conceptotipo
+                    conceptotipo: this.state.conceptotipo,
+                    conceptoimporte: this.state.conceptoimporte
                 }),
                 headers: {
                     'Accepet': 'applicatiob/json',
@@ -130,7 +134,7 @@ class Conceptos extends Component {
                 .then(data => {
                     console.log(data);
                     window.M.toast({ html: 'Concepto Editado' });
-                    this.setState({ _id: '', conceptodesc: '', conceptotipo: 'Egreso' });
+                    this.setState({ _id: '', conceptodesc: '', conceptotipo: 'Egreso' , conceptoimporte: 0 });
                     this.fetchConceptos();
                 })
                 .catch(err => console.log(err));
@@ -152,7 +156,7 @@ class Conceptos extends Component {
                 .then(data => {
                     console.log(data);
                     window.M.toast({ html: 'Concepto Guardado' });
-                    this.setState({ _id: '', conceptodesc: '', conceptotipo: 'Egreso' });
+                    this.setState({ _id: '', conceptodesc: '', conceptotipo: 'Egreso' , conceptoimporte: 0 });
                     this.fetchConceptos();
                 })
                 .catch(err => console.log(err));
@@ -172,6 +176,10 @@ class Conceptos extends Component {
             id: 'TipoId',
             Header: 'Tipo',
             accessor: d => d.conceptotipo
+        },{
+            id: 'ImporteId',
+            Header: 'Ultimo Importe',
+            accessor: d => d.conceptoimporte
         },
         {
             header: 'Acción',
@@ -179,7 +187,7 @@ class Conceptos extends Component {
             accessor: 'Edit',
             //render: ({row}) => ( <button onClick= {(e) => this.handleButtonEdit(e,row)}>Editar</button>)
             width: 60,
-            filterable:false,
+            filterable: false,
             Cell: row => (<button className="waves-effect waves-ligth btn-small"
                 onClick={(e) => this.handleButtonEdit(e, row)}>
                 <i className="material-icons center">edit</i></button>)
@@ -190,7 +198,7 @@ class Conceptos extends Component {
             id: 'Delete',
             accessor: 'Delete',
             width: 60,
-            filterable:false,
+            filterable: false,
             //render: ({row}) => ( <button onClick= {(e) => this.handleButtonEdit(e,row)}>Editar</button>)
             Cell: row => (<button className="waves-effect waves-ligth btn-small"
                 onClick={(e) => this.deleteConcepto(e, row)}>
@@ -206,7 +214,8 @@ class Conceptos extends Component {
             <div className="container center">
                 <h3> Conceptos</h3>
                 <div className="row">
-                    <div className="col s6 offset-s3">
+                    {/* <div className="col s6 offset-s3"> */}
+                    <div className="col s6">
                         <div className="card">
                             <div className="card-content" >
                                 <form onSubmit={this.addConcepto}>
@@ -214,6 +223,13 @@ class Conceptos extends Component {
                                         <div className="input-field col s12">
                                             <input name="conceptodesc" onChange={this.handleChange} value={this.state.conceptodesc} placeholder="Ingrese un concepto" type="text" autoFocus />
                                             <label htmlFor="conceptodesc">Descripción de concepto</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="input-field col s12">
+                                            <input name="conceptoimporte" onChange={this.handleChange} value={this.state.conceptoimporte} placeholder="Ingrese un importe" type="number"  />
+                                            <label htmlFor="conceptoimporte">Ultimo Importe</label>
                                         </div>
                                     </div>
 
@@ -254,18 +270,22 @@ class Conceptos extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="container">
-                    <ReacTable
-                        data={this.state.conceptosarray}
-                        columns={columns}
-                        defaultPageSize={8}
-                        className="-striped -highlight"
-                        filterable={true}
-                    />
 
-                </div>
+                    <div className="col s6">
 
+                        <div className="card">
+                            <div className="card-content" >
+                                <ReacTable
+                                    data={this.state.conceptosarray}
+                                    columns={columns}
+                                    defaultPageSize={8}
+                                    className="-striped -highlight"
+                                    filterable={true}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         );
