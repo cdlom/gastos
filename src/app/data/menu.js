@@ -8,7 +8,7 @@ export default [
         url:'/Conceptos',
      },
      {
-        title:'Estimados',
+        title:'Pronóstico',
         url:'/Estimados',
      },
      {

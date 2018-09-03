@@ -23,6 +23,9 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //routes
 app.use('/api/conceptos', require('./routes/concepto.routes'));
+app.use('/api/periodos', require('./routes/periodo.routes'));
+
+
 // app.get('/*', function(req, res) {
 //     res.sendfile(path.join(__dirname,'public/index.html'),function(err){
 //         if(err) {

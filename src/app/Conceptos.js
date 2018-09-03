@@ -96,7 +96,7 @@ class Conceptos extends Component {
             fetch(`/api/conceptos/${row.original._id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Accepet': 'applicatiob/json',
+                    'Accepet': 'application/json',
                     'Content-Type': 'application/json'
                 }
             })
